@@ -22,7 +22,7 @@ pipeline {
                 steps {
             withDockerRegistry([ credentialsId: "dockerhub", url: "" ]) {
               sh  'docker pull sailesh081/dockerhub_sailesh081:$BUILD_NUMBER'
-              sh  'docker -H "ssh://vagrant@192.168.0.106" run -d -p 85:80 --name=helloworld sailesh081/dockerhub_sailesh081:$BUILD_NUMBER'
+              sh  'docker -H "ssh://vagrant@node1" run -d -p 85:80 --name=helloworld sailesh081/dockerhub_sailesh081:$BUILD_NUMBER'
             }
          }
          }
