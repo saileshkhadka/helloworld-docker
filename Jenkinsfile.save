@@ -4,8 +4,8 @@ pipeline {
      stage('Docker Build and Tag') {
                steps {
 
-                    sh 'docker build -t sailesh081/dockerhub_sailesh081:latest .'
-                    sh 'docker tag sailesh081/dockerhub_sailesh081:latest sailesh081/dockerhub_sailesh081:$BUILD_NUMBER'
+                    sh 'docker build -t shram/dockerhub_https://github.com/saileshkhadka/helloworld-docker.gitshram:latest .'
+                    sh 'docker tag shram/dockerhub_sailesh081:latest sailesh081/dockerhub_sailesh081:$BUILD_NUMBER'
               }
             }
      
@@ -13,7 +13,7 @@ pipeline {
 
                 steps {
             withDockerRegistry([ credentialsId: "dockerhub", url: "" ]) {
-              sh  'docker push sailesh081/dockerhub_sailesh081:$BUILD_NUMBER'
+              sh  'docker push shram/dockerhub_shramik:$BUILD_NUMBER'
             }
          }
      }
@@ -21,7 +21,7 @@ pipeline {
 
                 steps {
             withDockerRegistry([ credentialsId: "dockerhub", url: "" ]) {
-              sh  'docker pull sailesh081/dockerhub_sailesh081:$BUILD_NUMBER'
+              sh  'docker pull shram/dockerhub_sailesh081:$BUILD_NUMBER'
               sh  'docker -H "ssh://vagrant@192.168.0.106" run -d -p 85:80 --name=helloworld sailesh081/dockerhub_sailesh081:$BUILD_NUMBER'
             }
          }
